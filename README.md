@@ -1,7 +1,8 @@
 ## TODO
-1. Run docker and get this working
-2. enable record uploads 
-3. enable google SSO
+1. Run docker and get this working - DONE
+2. enable record uploads - DONE (this is working)
+3. Verify project creation & patient invites
+4. deploy to vercel/domain for external access (DNS, configs etc.)
 
 
 # [Medplum](https://www.medplum.com) &middot; [![GitHub license](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/medplum/medplum/blob/main/LICENSE.txt) [![npm version](https://img.shields.io/npm/v/@medplum/core.svg?color=blue)](https://www.npmjs.com/package/@medplum/core) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=medplum_medplum&metric=alert_status&token=207c95a43e7519809d6d336d8cc7837d3e057acf)](https://sonarcloud.io/dashboard?id=medplum_medplum) [![Coverage Status](https://coveralls.io/repos/github/medplum/medplum/badge.svg?branch=main)](https://coveralls.io/github/medplum/medplum?branch=main)
