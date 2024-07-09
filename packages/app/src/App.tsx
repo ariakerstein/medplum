@@ -16,7 +16,7 @@ import {
   IconStar,
   IconWebhook,
 } from '@tabler/icons-react';
-import { FunctionComponent, Suspense } from 'react';
+import { FunctionComponent, Suspense, useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { AppRoutes } from './AppRoutes';
 import './App.css';
@@ -24,7 +24,7 @@ import './App.css';
 const medplumClient = new MedplumClient({
   baseUrl: import.meta.env.VITE_MEDPLUM_SERVER_URL,
   clientId: import.meta.env.VITE_MEDPLUM_CLIENT_ID,
-  projectId: import.meta.env.VITE_MEDPLUM_PROJECT_ID, // Include this if you have a project ID
+  projectId: import.meta.env.VITE_MEDPLUM_PROJECT_ID,
 });
 
 export function App(): JSX.Element {
@@ -37,11 +37,28 @@ export function App(): JSX.Element {
 
 function AppContent(): JSX.Element {
   const medplum = useMedplum();
-  const config = medplum.getUserConfiguration();
+  const [config, setConfig] = useState<UserConfiguration | undefined>(undefined);
   const location = useLocation();
   const [searchParams] = useSearchParams();
+  const [loading, setLoading] = useState(true);
 
-  if (medplum.isLoading()) {
+  useEffect(() => {
+    const initMedplum = async () => {
+      try {
+        await medplum.signIn();
+        const userConfig = await medplum.getUserConfiguration();
+        setConfig(userConfig);
+      } catch (error) {
+        console.error('Failed to initialize Medplum:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initMedplum();
+  }, [medplum]);
+
+  if (loading) {
     return <Loading />;
   }
 
