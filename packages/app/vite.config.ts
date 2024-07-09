@@ -20,7 +20,7 @@ try {
 process.env.MEDPLUM_VERSION = packageJson.version + '-' + gitHash;
 
 export default defineConfig({
-  envPrefix: ['MEDPLUM_', 'GOOGLE_', 'RECAPTCHA_'],
+  envPrefix: ['MEDPLUM_', 'GOOGLE_', 'RECAPTCHA_', 'VITE_'],
   plugins: [react()],
   server: {
     port: 3000,
@@ -32,7 +32,11 @@ export default defineConfig({
   resolve: {
     alias: {
       '@medplum/core': path.resolve(__dirname, '../core/src'),
-      '@medplum/react': path.resolve(__dirname, '../react/src'),
+      '@medplum/react': path.path.resolve(__dirname, '../react/src'),
+      '@medplum/mock': path.resolve(__dirname, '../mock/src')
     },
+  },
+  define: {
+    'import.meta.env.VITE_MEDPLUM_SERVER_URL': JSON.stringify(process.env.VITE_MEDPLUM_SERVER_URL),
   },
 });

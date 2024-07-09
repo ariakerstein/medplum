@@ -19,8 +19,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "vite build",
-    "build:app": "vite build",
+    "build": "tsc && vite build",
+    "build:app": "tsc && vite build",
     "clean": "rimraf dist",
     "dev": "vite",
     "source-map-explorer": "source-map-explorer dist/**/*.js --gzip",
