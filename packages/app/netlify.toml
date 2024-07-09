@@ -1,6 +1,6 @@
 [build]
   base = "packages/app"
-  command = "npm run build"
+  command = "npm run build:app"
   publish = "dist"
 
 [[redirects]]
@@ -10,3 +10,7 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  VITE_MEDPLUM_SERVER_URL = "https://api.medplum.com/"
+  # Add the following lines if you have these variables set in your Netlify UI
+  # VITE_MEDPLUM_CLIENT_ID = "your-client-id"
+  # VITE_MEDPLUM_PROJECT_ID = "your-project-id"

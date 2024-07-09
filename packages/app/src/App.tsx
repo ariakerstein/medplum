@@ -1,7 +1,7 @@
 import { Space } from '@mantine/core';
-import { MEDPLUM_VERSION } from '@medplum/core';
+import { MEDPLUM_VERSION, MedplumClient } from '@medplum/core';
 import { UserConfiguration } from '@medplum/fhirtypes';
-import { AppShell, Loading, Logo, NavbarMenu, useMedplum } from '@medplum/react';
+import { AppShell, Loading, Logo, NavbarMenu, useMedplum, MedplumProvider } from '@medplum/react';
 import {
   IconBrandAsana,
   IconBuilding,
@@ -19,10 +19,23 @@ import {
 import { FunctionComponent, Suspense } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { AppRoutes } from './AppRoutes';
-
 import './App.css';
 
+const medplumClient = new MedplumClient({
+  baseUrl: import.meta.env.VITE_MEDPLUM_SERVER_URL,
+  clientId: import.meta.env.VITE_MEDPLUM_CLIENT_ID,
+  projectId: import.meta.env.VITE_MEDPLUM_PROJECT_ID, // Include this if you have a project ID
+});
+
 export function App(): JSX.Element {
+  return (
+    <MedplumProvider medplum={medplumClient}>
+      <AppContent />
+    </MedplumProvider>
+  );
+}
+
+function AppContent(): JSX.Element {
   const medplum = useMedplum();
   const config = medplum.getUserConfiguration();
   const location = useLocation();
@@ -59,7 +72,6 @@ function userConfigToMenu(config: UserConfiguration | undefined): NavbarMenu[] {
           icon: getIcon(link.target as string),
         })) || [],
     })) || [];
-
   result.push({
     title: 'Settings',
     links: [
@@ -70,7 +82,6 @@ function userConfigToMenu(config: UserConfiguration | undefined): NavbarMenu[] {
       },
     ],
   });
-
   return result;
 }
 
