@@ -1,42 +1,11 @@
-/// <reference types="vite/client" />
-import react from '@vitejs/plugin-react';
-import { execSync } from 'child_process';
-import { copyFileSync, existsSync } from 'fs';
-import path from 'path';
-import { defineConfig } from 'vite';
-import packageJson from './package.json' with { type: 'json' };
-
-if (!existsSync('.env')) {
-  copyFileSync('.env.defaults', '.env');
-}
-
-let gitHash;
-try {
-  gitHash = execSync('git rev-parse --short HEAD').toString().trim();
-} catch (error) {
-  gitHash = 'unknown'; // Default value when not in a git repository
-}
-
-process.env.MEDPLUM_VERSION = packageJson.version + '-' + gitHash;
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  envPrefix: ['MEDPLUM_', 'GOOGLE_', 'RECAPTCHA_', 'VITE_'],
   plugins: [react()],
-  server: {
-    port: 3000,
-  },
-  publicDir: 'static',
-  build: {
-    sourcemap: true,
-  },
-  resolve: {
-    alias: {
-      '@medplum/core': path.resolve(__dirname, '../core/src'),
-      '@medplum/react': path.path.resolve(__dirname, '../react/src'),
-      '@medplum/mock': path.resolve(__dirname, '../mock/src')
-    },
-  },
   define: {
     'import.meta.env.VITE_MEDPLUM_SERVER_URL': JSON.stringify(process.env.VITE_MEDPLUM_SERVER_URL),
+    'import.meta.env.VITE_MEDPLUM_CLIENT_ID': JSON.stringify(process.env.VITE_MEDPLUM_CLIENT_ID),
+    'import.meta.env.VITE_MEDPLUM_PROJECT_ID': JSON.stringify(process.env.VITE_MEDPLUM_PROJECT_ID),
   },
-});
+})
