@@ -19,8 +19,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "npm run clean && tsc && vite build",
-    "build:app": "npm run build",
+    "build": "vite build",
+    "build:app": "vite build",
     "clean": "rimraf dist",
     "dev": "vite",
     "source-map-explorer": "source-map-explorer dist/**/*.js --gzip",
@@ -53,7 +53,9 @@
     "@vitejs/plugin-react": "4.3.1",
     "postcss": "8.4.39",
     "postcss-preset-mantine": "1.15.0",
-    "vite": "5.3.2"
+    "vite": "5.3.2",
+    "typescript": "5.5.2",
+    "rimraf": "5.0.7"
   },
   "engines": {
     "node": ">=18.0.0"
