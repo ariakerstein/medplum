@@ -20,6 +20,7 @@
   ],
   "scripts": {
     "build": "npm run clean && tsc && vite build",
+    "build:app": "npm run build",
     "clean": "rimraf dist",
     "dev": "vite",
     "source-map-explorer": "source-map-explorer dist/**/*.js --gzip",
@@ -28,7 +29,7 @@
   "browserslist": [
     "last 1 Chrome versions"
   ],
-  "devDependencies": {
+  "dependencies": {
     "@mantine/core": "7.11.0",
     "@mantine/dropzone": "7.11.0",
     "@mantine/hooks": "7.11.0",
@@ -36,9 +37,15 @@
     "@medplum/core": "3.2.0",
     "@medplum/definitions": "3.2.0",
     "@medplum/fhirtypes": "3.2.0",
-    "@medplum/mock": "3.2.0",
     "@medplum/react": "3.2.0",
     "@tabler/icons-react": "3.7.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "6.24.0",
+    "rfc6902": "5.1.1"
+  },
+  "devDependencies": {
+    "@medplum/mock": "3.2.0",
     "@testing-library/jest-dom": "6.4.6",
     "@testing-library/react": "16.0.0",
     "@types/react": "18.3.3",
@@ -46,10 +53,6 @@
     "@vitejs/plugin-react": "4.3.1",
     "postcss": "8.4.39",
     "postcss-preset-mantine": "1.15.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-router-dom": "6.24.0",
-    "rfc6902": "5.1.1",
     "vite": "5.3.2"
   },
   "engines": {
