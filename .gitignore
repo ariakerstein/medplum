@@ -24,6 +24,8 @@ packages/definitions/dist/**/*.d.ts.map
 packages/generator/output/
 packages/generator/compare.html
 packages/graphiql/public/
+packages/app/.env 
+packages/app/dist 
 
 # Storybook output
 storybook-static/
