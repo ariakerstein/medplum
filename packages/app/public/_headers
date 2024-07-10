@@ -1,0 +1,2 @@
+/*
+  Content-Security-Policy: frame-ancestors 'self' https://prometheushealth.netlify.app https://api.medplum.com
