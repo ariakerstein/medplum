@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path'
 
 export default defineConfig({
   envPrefix: ['MEDPLUM_', 'GOOGLE_', 'RECAPTCHA_', 'VITE_'],
@@ -19,8 +20,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@medplum/core': path.resolve(__dirname, '../core/src'),
-      '@medplum/react': path.resolve(__dirname, '../react/src'),
+      '@medplum/core': path.resolve(__dirname, 'node_modules/@medplum/core'),
+      '@medplum/react': path.resolve(__dirname, 'node_modules/@medplum/react'),
+      '@medplum/fhirtypes': path.resolve(__dirname, 'node_modules/@medplum/fhirtypes'),
     },
   },
 });
